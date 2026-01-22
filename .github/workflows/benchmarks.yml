@@ -42,6 +42,13 @@ jobs:
 
       - run: yarn link webpack --frozen-lockfile
 
+      # --- ADDED STEP START ---
+      - name: Install CodSpeed CLI explicitly
+        run: |
+          curl -fsSL https://github.com/CodSpeedHQ/codspeed-runner/releases/latest/download/codspeed-runner-installer.sh | bash
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+      # --- ADDED STEP END ---
+
       - name: Run benchmarks
         uses: CodSpeedHQ/action@94b88560ad3ed11ed5e92a321518a47c35a1fed5 # v4.8.0
         with:
